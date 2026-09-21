@@ -50,15 +50,26 @@ export default function HomePage() {
       </section>
 
       {/* Fleet banner */}
+      {/* The original serves this photo as two Wix-cropped renditions (3.2:1 on
+          desktop, 1.95:1 on mobile) rather than a CSS crop of the full image. */}
       <section className="relative h-200 bg-ink lg:h-400">
         <Image
-          src="/images/home-fleet.jpg"
+          src="/images/home-fleet-desktop.jpg"
           alt="Gausium"
           fill
           priority
           sizes="100vw"
-          className="object-cover"
-          style={{ objectPosition: "74% 65%" }}
+          quality={90}
+          className="hidden object-cover lg:block"
+        />
+        <Image
+          src="/images/home-fleet-mobile.jpg"
+          alt="Gausium"
+          fill
+          priority
+          sizes="100vw"
+          quality={90}
+          className="object-cover lg:hidden"
         />
       </section>
 
