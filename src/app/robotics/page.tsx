@@ -87,7 +87,8 @@ export default function RoboticsPage() {
           {TECH.map((item, i) => (
             <li key={item.title}>
               <Reveal
-                delay={(i % 3) * 80}
+                variant="fade"
+                delay={i * 50}
                 className="flex h-full flex-col justify-between border border-line bg-navy p-24 lg:min-h-208 lg:p-32"
               >
                 <h3 className="t-h5">{item.title}</h3>
@@ -153,7 +154,8 @@ export default function RoboticsPage() {
           {RANGE.map((robot, i) => (
             <li key={robot.href}>
               <Reveal
-                delay={(i % 4) * 80}
+                variant="fade"
+                delay={i * 50}
                 className="flex h-full flex-col border border-line p-24 lg:min-h-261 lg:p-32"
               >
                 <p className="t-small text-white">{robot.no}</p>
@@ -171,7 +173,8 @@ export default function RoboticsPage() {
           ))}
           <li>
             <Reveal
-              delay={240}
+              variant="fade"
+              delay={350}
               className="flex h-full items-center justify-center border border-line bg-white/75 p-24 lg:min-h-261"
             >
               <p className="t-h5 text-center !text-navy">COMING SOON</p>

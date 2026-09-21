@@ -117,7 +117,7 @@ export default function AboutPage() {
         <ul className="mt-40 grid grid-cols-1 gap-24 lg:mt-80 lg:grid-cols-4 lg:gap-32">
           {DIFFERENT.map((item, i) => (
             <li key={item.title}>
-              <Reveal delay={i * 80} className="h-full border border-line p-24 lg:p-32">
+              <Reveal variant="fade" delay={i * 50} className="h-full border border-line p-24 lg:p-32">
                 <h3 className="t-h5">{item.title}</h3>
                 <p className="t-body mt-12 text-muted lg:mt-16">{item.text}</p>
               </Reveal>
@@ -155,7 +155,7 @@ export default function AboutPage() {
           <ul className="space-y-24 lg:space-y-40">
             {HYBRID.map((item, i) => (
               <li key={item.title}>
-                <Reveal delay={i * 80} className="border border-line p-24 lg:p-32">
+                <Reveal variant="fade" delay={i * 50} className="border border-line p-24 lg:p-32">
                   <h3 className="t-h6">{item.title}</h3>
                   <p className="t-body mt-8 text-muted lg:mt-12">{item.text}</p>
                 </Reveal>
@@ -244,7 +244,7 @@ export default function AboutPage() {
         <ul className="mt-40 grid grid-cols-1 gap-24 lg:mt-100 lg:grid-cols-3 lg:gap-40">
           {DETAILS.map((item, i) => (
             <li key={item.title}>
-              <Reveal delay={i * 80} className="border border-line px-24 py-32 text-center">
+              <Reveal variant="fade" delay={i * 50} className="border border-line px-24 py-32 text-center">
                 <h3 className="t-h6">{item.title}</h3>
                 {item.href ? (
                   <a href={item.href} className="t-body mt-12 block text-muted hover:text-ink">

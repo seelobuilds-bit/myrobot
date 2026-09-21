@@ -33,7 +33,8 @@ function Features({ robot }: { robot: Robot }) {
         {robot.features.map((feature, i) => (
           <li key={feature.title}>
             <Reveal
-              delay={(i % 3) * 80}
+              variant="fade"
+              delay={i * 50}
               className={`h-full p-24 lg:min-h-188 lg:p-32 ${
                 boxed ? "border border-muted bg-line" : "border border-line"
               }`}
@@ -61,7 +62,7 @@ function Configurations({ robot }: { robot: Robot }) {
       <ul className="mt-40 grid grid-cols-1 gap-40 lg:mt-80 lg:grid-cols-3 lg:gap-88">
         {robot.configurations.map((config, i) => (
           <li key={config.name}>
-            <Reveal delay={i * 80} className="flex flex-col items-center">
+            <Reveal variant="fade" delay={i * 50} className="flex flex-col items-center">
               <div className="relative aspect-square w-full">
                 <Image
                   src={config.image}
@@ -194,10 +195,11 @@ export default async function RobotPage({ params }: PageProps<"/[slug]">) {
     <>
       {/* Hero */}
       <section
-        className="bg-navy px-24 pb-60 pt-60 lg:px-0 lg:pb-[var(--hero-bottom)] lg:pt-[var(--hero-top)]"
+        className="bg-navy px-24 pb-60 pt-[var(--hero-top-m)] lg:px-0 lg:pb-[var(--hero-bottom)] lg:pt-[var(--hero-top)]"
         style={
           {
             "--hero-top": `${robot.heroBox.top / 16}rem`,
+            "--hero-top-m": `${robot.heroMobile.top / 16}rem`,
             "--hero-bottom": `${robot.heroBox.bottom / 16}rem`,
             "--hero-left": `${robot.heroBox.left / 16}rem`,
             "--hero-text-w": `${robot.heroBox.textW / 16}rem`,
@@ -209,7 +211,7 @@ export default async function RobotPage({ params }: PageProps<"/[slug]">) {
           } as React.CSSProperties
         }
       >
-        <div className="flex flex-col gap-40 lg:flex-row lg:items-start lg:gap-0 lg:pl-[var(--hero-left)]">
+        <div className="flex flex-col gap-32 lg:flex-row lg:items-start lg:gap-0 lg:pl-[var(--hero-left)]">
           <div className="lg:w-[var(--hero-text-w)] lg:shrink-0">
             <Reveal>
               <h1 className="t-h1">{robot.name}</h1>
@@ -243,15 +245,20 @@ export default async function RobotPage({ params }: PageProps<"/[slug]">) {
           </div>
 
           <Reveal
-            className="relative w-full lg:ml-[var(--hero-img-left)] lg:mt-[var(--hero-img-top)] lg:w-[var(--hero-img-w)] lg:shrink-0"
-            style={{ aspectRatio: robot.hero.aspect }}
+            variant="fade"
+            delay={200}
+            className={`relative w-full max-lg:aspect-[342/300] lg:ml-[var(--hero-img-left)] lg:mt-[var(--hero-img-top)] lg:w-[var(--hero-img-w)] lg:shrink-0 lg:aspect-[var(--hero-aspect)] ${
+              robot.heroMobile.imageFirst ? "max-lg:order-first" : ""
+            }`}
+            style={{ "--hero-aspect": robot.hero.aspect } as React.CSSProperties}
           >
             <Image
               src={robot.hero.src}
               alt={robot.hero.alt}
               fill
               priority
-              sizes="(min-width: 1001px) 50vw, 100vw"
+              sizes="(min-width: 1001px) 60vw, 100vw"
+              quality={85}
               className={robot.hero.fit === "contain" ? "object-contain" : "object-cover"}
             />
           </Reveal>

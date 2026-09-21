@@ -39,7 +39,7 @@ export default function HomePage() {
             work while your team focuses on what matters.
           </p>
         </Reveal>
-        <Reveal className="mt-40 flex flex-col items-center gap-12 lg:relative lg:-left-20 lg:mt-51 lg:flex-row lg:justify-center lg:gap-36">
+        <Reveal variant="fade" delay={200} className="mt-40 flex flex-col items-center gap-12 lg:relative lg:-left-20 lg:mt-51 lg:flex-row lg:justify-center lg:gap-36">
           <Link href="/contact" className="btn h-53 w-202">
             Book Demo
           </Link>
@@ -74,7 +74,7 @@ export default function HomePage() {
             platform — across Ireland. We assess, deploy, train and support. End to end
           </p>
         </Reveal>
-        <Reveal className="mt-32 flex justify-center lg:mt-44">
+        <Reveal variant="fade" delay={200} className="mt-32 flex justify-center lg:mt-44">
           <Link href="/abouts" className="btn t-lead h-50 w-185 !normal-case">
             LEARN MORE
           </Link>
@@ -98,7 +98,8 @@ export default function HomePage() {
           {INDUSTRIES.map((name, i) => (
             <li key={name}>
               <Reveal
-                delay={(i % 5) * 80}
+                variant="fade"
+                delay={i * 50}
                 className="flex h-74 items-center justify-center border border-line px-24 lg:h-170 lg:px-10"
               >
                 <h3 className="t-h5 text-center">{name}</h3>
@@ -114,8 +115,9 @@ export default function HomePage() {
           {STATS.map((stat, i) => (
             <li key={stat.label} className={i === 0 ? "max-lg:mb-16" : undefined}>
               <Reveal
-                delay={i * 80}
-                className="flex h-109 flex-col items-center justify-center border border-line lg:h-236 lg:justify-start lg:pt-40"
+                variant="fade"
+                delay={i * 100}
+                className="flex h-109 flex-col items-center justify-center border border-line border-b-[#3d66d6] lg:h-236 lg:justify-start lg:pt-40"
               >
                 <p className="t-h2 text-center">{stat.value}</p>
                 <p className="t-body mt-12 text-center text-ink lg:mt-72">{stat.label}</p>

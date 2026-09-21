@@ -40,7 +40,7 @@ export default function Header() {
   const isActive = (href: string) => pathname === href;
 
   return (
-    <header className="sticky top-0 z-50 box-border h-47 border-b border-line bg-navy lg:h-110">
+    <header className="relative z-50 box-border h-47 border-b border-line bg-navy lg:h-110">
       {/* Desktop */}
       <div className="hidden h-full items-start justify-between lg:flex">
         <Link href="/" aria-label="NOLAR home" className="ml-23 mt-18 block h-71 w-210">

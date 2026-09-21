@@ -145,7 +145,7 @@ export default function ServicesPage() {
         <ul className="mt-40 grid grid-cols-1 gap-24 lg:mt-48 lg:grid-cols-3 lg:gap-24">
           {OFFERINGS.map((item, i) => (
             <li key={item.title}>
-              <Reveal delay={(i % 3) * 80} className="h-full border border-line p-24 lg:min-h-208 lg:p-32">
+              <Reveal variant="fade" delay={i * 50} className="h-full border border-line p-24 lg:min-h-208 lg:p-32">
                 <h3 className="t-h5">{item.title}</h3>
                 <p className="t-body mt-12 text-muted lg:mt-16">{item.text}</p>
               </Reveal>
@@ -169,8 +169,9 @@ export default function ServicesPage() {
           {CLOUD.map((item, i) => (
             <li key={item.title}>
               <Reveal
-                delay={Math.floor(i / 2) * 80}
-                className="h-full rounded-[0.125rem] border border-line bg-black p-24 lg:min-h-166 lg:p-32"
+                variant="fade"
+                delay={i * 50}
+                className="h-full rounded-[0.125rem] border border-line p-24 lg:min-h-166 lg:p-32"
               >
                 <h3 className="t-h6 !text-white">{item.title}</h3>
                 <p className="t-body mt-12 text-muted lg:mt-16">{item.text}</p>
@@ -212,7 +213,7 @@ export default function ServicesPage() {
         <ul className="mt-40 grid grid-cols-1 gap-24 lg:mt-48 lg:grid-cols-3 lg:gap-24">
           {WHY.map((item, i) => (
             <li key={item.title}>
-              <Reveal delay={i * 80} className="h-full bg-navy p-24">
+              <Reveal variant="fade" delay={i * 50} className="h-full bg-navy p-24">
                 <h3 className="t-h5">{item.title}</h3>
                 <p className="t-body mt-12 text-muted lg:mt-16">{item.text}</p>
               </Reveal>

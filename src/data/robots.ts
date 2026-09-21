@@ -23,6 +23,8 @@ export type Robot = {
     /** Bottom padding of the hero section. */
     bottom: number;
   };
+  /** Mobile hero: top inset on the 390 canvas and whether the photo sits above the text. */
+  heroMobile: { top: number; imageFirst: boolean };
   /** Spec row height in design px; the original differs per page. */
   specRowH: number;
   /** Phantas has an empty band after its first spec row on the live site. */
@@ -53,6 +55,7 @@ const NAV_FULL = "LiDAR, 3D depth camera, RGB camera, anti-drop and anti-collisi
 export const ROBOTS: Robot[] = [
   {
     slug: "phantas",
+    heroMobile: { top: 168, imageFirst: false },
     heroBox: { left: 128, textW: 640, taglineW: 526, introW: 512, imgLeft: 713, imgW: 512, imgTop: 41, top: 168, bottom: 47 },
     specRowH: 76,
     specGapAfterFirst: 111,
@@ -125,6 +128,7 @@ export const ROBOTS: Robot[] = [
   },
   {
     slug: "phantas-single",
+    heroMobile: { top: 101, imageFirst: false },
     heroBox: { left: 40, textW: 624, taglineW: 624, introW: 600, imgLeft: 744, imgW: 496, imgTop: 0, top: 101, bottom: 100 },
     specRowH: 60,
     name: "Phantas Single",
@@ -194,6 +198,7 @@ export const ROBOTS: Robot[] = [
   },
   {
     slug: "phan-shop",
+    heroMobile: { top: 54, imageFirst: true },
     heroBox: { left: 80, textW: 544, taglineW: 544, introW: 544, imgLeft: 651, imgW: 576, imgTop: -70, top: 124, bottom: 56 },
     specRowH: 110,
     name: "PhanShop",
@@ -275,6 +280,7 @@ export const ROBOTS: Robot[] = [
   },
   {
     slug: "mira",
+    heroMobile: { top: 72, imageFirst: true },
     heroBox: { left: 40, textW: 530, taglineW: 530, introW: 462, imgLeft: 607, imgW: 677, imgTop: -48, top: 121, bottom: 168 },
     specRowH: 51,
     name: "Mira",
@@ -353,6 +359,7 @@ export const ROBOTS: Robot[] = [
   },
   {
     slug: "omnie",
+    heroMobile: { top: 96, imageFirst: true },
     heroBox: { left: 75, textW: 480, taglineW: 480, introW: 480, imgLeft: 571, imgW: 621, imgTop: -22, top: 118, bottom: 70 },
     specRowH: 61,
     name: "Omnie",
@@ -430,6 +437,7 @@ export const ROBOTS: Robot[] = [
   },
   {
     slug: "marvel",
+    heroMobile: { top: 180, imageFirst: true },
     heroBox: { left: 80, textW: 576, taglineW: 576, introW: 458, imgLeft: 604, imgW: 628, imgTop: -13, top: 195, bottom: 44 },
     specRowH: 51,
     name: "Marvel",
@@ -507,6 +515,7 @@ export const ROBOTS: Robot[] = [
   },
   {
     slug: "beetle",
+    heroMobile: { top: 40, imageFirst: true },
     heroBox: { left: 40, textW: 560, taglineW: 560, introW: 560, imgLeft: 640, imgW: 524, imgTop: -64, top: 144, bottom: 51 },
     specRowH: 51,
     name: "Beetle",

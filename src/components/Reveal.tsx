@@ -8,11 +8,13 @@ type RevealProps = {
   style?: CSSProperties;
   /** Delay in ms, used to stagger items within a row. */
   delay?: number;
+  /** "float" (default) rises into place like Wix's floatIn; "fade" only fades, as Wix's fadeIn. */
+  variant?: "float" | "fade";
 };
 
 // Reproduces the original site's "float in" entrance: content sits at
 // opacity 0, offset downwards, and eases into place once scrolled into view.
-export default function Reveal({ children, className = "", style, delay = 0 }: RevealProps) {
+export default function Reveal({ children, className = "", style, delay = 0, variant = "float" }: RevealProps) {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -40,7 +42,7 @@ export default function Reveal({ children, className = "", style, delay = 0 }: R
   return (
     <div
       ref={ref}
-      className={`reveal ${className}`}
+      className={`reveal ${variant === "fade" ? "reveal-fade" : ""} ${className}`}
       style={{ ...style, transitionDelay: delay ? `${delay}ms` : undefined }}
     >
       {children}
