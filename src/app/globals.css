@@ -1,26 +1,198 @@
 @import "tailwindcss";
 
+/*
+ * Scaling model (mirrors the original Wix Studio build)
+ * -----------------------------------------------------
+ * Every size on the site is proportional to the viewport width:
+ *   - desktop (> 1000px): authored against a 1280px canvas, capped at 1920px
+ *   - mobile  (<= 1000px): authored against a 390px canvas, capped at 700px
+ * The root font-size carries that ratio, so 1rem always equals 16 "design px".
+ * Tailwind's spacing unit is set to 1/16rem, which makes every spacing utility
+ * read as design pixels: `mt-80` is 80px on the 1280 (or 390) canvas.
+ */
+
+@theme {
+  --breakpoint-*: initial;
+  --breakpoint-lg: 1001px;
+
+  --spacing: 0.0625rem;
+
+  --color-navy: #0b1120;
+  --color-panel: #111827;
+  --color-line: #1e2a3e;
+  --color-ink: #f0f2f5;
+  --color-muted: #8892a4;
+
+  --font-display: var(--font-display-stack);
+  --font-nav: var(--font-onest), "Helvetica Neue", Arial, sans-serif;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Neue Haas Grotesk Display Pro is served through Adobe Fonts (see
+     NEXT_PUBLIC_ADOBE_FONTS_KIT_ID in layout.tsx). Helvetica Neue is the
+     closest system fallback when no kit is configured. */
+  --font-display-stack: "neue-haas-grotesk-display", "Neue Haas Grotesk Display Pro",
+    "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+html {
+  font-size: calc(min(100vw, 700px) / 390 * 16);
+  background: #0b1120;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@media (min-width: 1001px) {
+  html {
+    font-size: calc(min(100vw, 1920px) / 1280 * 16);
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: #0b1120;
+  color: #f0f2f5;
+  font-family: var(--font-display-stack);
+  font-size: 1rem;
+  line-height: 1.2;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Helvetica Neue sets ~8% wider than Neue Haas Grotesk Display. When the Adobe
+   Fonts kit is not configured, tighten tracking so copy wraps like the original. */
+@layer base {
+  .font-fallback body,
+  .font-fallback body * {
+    letter-spacing: -0.04em;
+  }
+}
+
+/* ---------- Type scale ---------- */
+
+.t-h1,
+.t-h2,
+.t-h3,
+.t-h4,
+.t-h5,
+.t-h6 {
+  font-weight: 700;
+  color: #f0f2f5;
+}
+
+.t-h1 { font-size: 2.25rem; line-height: 1; }
+.t-h2 { font-size: 1.875rem; line-height: 1; }
+.t-h3 { font-size: 1.75rem; line-height: 1.1; }
+.t-h4 { font-size: 1.625rem; line-height: 1.1; }
+.t-h5 { font-size: 1.5rem; line-height: 1.1; }
+.t-h6 { font-size: 1.25rem; line-height: 1.2; }
+.t-lead { font-size: 1.125rem; line-height: 1.2; }
+.t-body { font-size: 1rem; line-height: 1.2; }
+.t-small { font-size: 0.875rem; line-height: 1.2; }
+
+@media (min-width: 1001px) {
+  .t-h1 { font-size: 5.5rem; }
+  .t-h2 { font-size: 4rem; }
+  .t-h3 { font-size: 3.5rem; }
+  .t-h4 { font-size: 3rem; }
+  .t-h5 { font-size: 2rem; }
+  .t-h6 { font-size: 1.5rem; }
+  .t-lead { font-size: 1.25rem; }
+}
+
+/* ---------- Buttons ---------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ffffff;
+  color: #ffffff;
+  background: transparent;
+  font-size: 1rem;
+  line-height: 1.2;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-align: center;
+  white-space: nowrap;
+  transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
+}
+
+.btn:hover {
+  background: #ffffff;
+  color: #0b1120;
+}
+
+.btn-solid {
+  background: #ffffff;
+  color: #0b1120;
+}
+
+.btn-solid:hover {
+  background: transparent;
+  color: #ffffff;
+}
+
+/* ---------- Entrance animation (Wix "float in") ---------- */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(1.875rem);
+  transition: opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ---------- Contact form (fixed px, matches the original widget) ---------- */
+
+.field-label {
+  display: block;
+  font-size: 14px;
+  line-height: 1.4;
+  color: #f0f2f5;
+  margin-bottom: 8px;
+}
+
+.field-input {
+  display: block;
+  width: 100%;
+  height: 42px;
+  padding: 0 12px;
+  background: transparent;
+  border: 1px solid rgba(30, 42, 62, 0.6);
+  color: #f0f2f5;
+  font-family: inherit;
+  font-size: 16px;
+  line-height: 1.4;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+textarea.field-input {
+  height: 92px;
+  padding: 8px 12px;
+  resize: vertical;
+}
+
+.field-input:hover,
+.field-input:focus {
+  border-color: #f0f2f5;
+}
+
+.field-input[aria-invalid="true"] {
+  border-color: #df3131;
 }
