@@ -114,7 +114,7 @@ export default function AboutPage() {
         <Reveal>
           <h2 className="t-h2 text-center">What Makes Us Different</h2>
         </Reveal>
-        <ul className="mt-40 grid grid-cols-1 gap-24 lg:mt-80 lg:grid-cols-4 lg:gap-32">
+        <ul className="mt-40 grid grid-cols-1 gap-24 md:grid-cols-2 lg:mt-80 lg:grid-cols-4 lg:gap-32">
           {DIFFERENT.map((item, i) => (
             <li key={item.title}>
               <Reveal variant="fade" delay={i * 50} className="h-full border border-line p-24 lg:p-32">
@@ -220,7 +220,7 @@ export default function AboutPage() {
         <Reveal>
           <h2 className="t-h2 text-center">By the Numbers</h2>
         </Reveal>
-        <ul className="mt-40 grid grid-cols-1 gap-32 lg:mt-104 lg:grid-cols-4 lg:gap-32">
+        <ul className="mt-40 grid grid-cols-1 gap-32 md:grid-cols-2 lg:mt-104 lg:grid-cols-4 lg:gap-32">
           {NUMBERS.map((item, i) => (
             <li key={item.label}>
               <Reveal delay={i * 80}>

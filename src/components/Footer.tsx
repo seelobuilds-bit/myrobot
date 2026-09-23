@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import Logo from "./Logo";
 import { CONTACT, NAV } from "@/data/site";
 
 export default function Footer() {
@@ -61,27 +62,43 @@ export default function Footer() {
       </div>
 
       {/* Mobile */}
-      <div className="t-small flex flex-col items-center px-24 pb-39 pt-43 text-muted lg:hidden">
-        <button
-          type="button"
-          aria-label="Menu"
-          onClick={() => window.dispatchEvent(new Event("open-site-menu"))}
-          className="flex h-42 w-42 items-center justify-center text-white"
-        >
-          <svg viewBox="0 0 24 24" className="h-24 w-24" fill="none" aria-hidden="true">
-            <path d="M2 6h20M2 12h20M2 18h20" stroke="currentColor" strokeWidth="1.2" />
-          </svg>
-        </button>
-        <Link href={CONTACT.privacyHref} className="mt-43">
-          Privacy Policy
+      <div className="px-24 pb-[calc(6rem+env(safe-area-inset-bottom))] pt-48 lg:hidden">
+        <Link href="/" aria-label="NOLAR home" className="mx-auto block h-44 w-154">
+          <Logo className="h-full w-full" />
         </Link>
-        <a href={CONTACT.websiteHref} className="mt-41">
-          {CONTACT.website}
-        </a>
-        <p className="mt-13 self-end">© {year} NOLAR Tech Limited</p>
-        <a href={CONTACT.emailHref} className="mt-12 self-start">
-          {CONTACT.email}
-        </a>
+
+        <nav aria-label="Footer" className="mt-36">
+          <ul className="grid grid-cols-2 gap-x-16 font-nav text-[0.9375rem] uppercase tracking-[0.04em] text-ink md:grid-cols-4">
+            {NAV.map((item) => (
+              <li key={item.href}>
+                <Link
+                  href={item.href}
+                  aria-current={pathname === item.href ? "page" : undefined}
+                  className={`flex min-h-44 items-center ${pathname === item.href ? "text-white underline underline-offset-[0.25em]" : ""}`}
+                >
+                  {item.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+
+        <div className="t-small mt-28 space-y-6 border-t border-line pt-28 text-muted">
+          <a href={CONTACT.emailHref} className="flex min-h-32 items-center hover:text-ink">
+            {CONTACT.email}
+          </a>
+          <a href={CONTACT.phoneHref} className="flex min-h-32 items-center hover:text-ink">
+            {CONTACT.phone}
+          </a>
+          <p className="pt-4 leading-[1.4]">{CONTACT.address}</p>
+        </div>
+
+        <div className="t-small mt-28 flex flex-wrap items-center justify-between gap-12 border-t border-line pt-24 text-muted">
+          <p>© {year} NOLAR Tech Limited</p>
+          <Link href={CONTACT.privacyHref} className="flex min-h-32 items-center hover:text-ink">
+            Privacy Policy
+          </Link>
+        </div>
       </div>
     </footer>
   );

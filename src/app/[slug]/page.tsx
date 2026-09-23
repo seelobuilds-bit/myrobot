@@ -29,7 +29,7 @@ function Features({ robot }: { robot: Robot }) {
           Key Features
         </h2>
       </Reveal>
-      <ul className="mt-40 grid grid-cols-1 gap-24 lg:mt-48 lg:grid-cols-3 lg:gap-32">
+      <ul className="mt-40 grid grid-cols-1 gap-24 md:grid-cols-2 lg:mt-48 lg:grid-cols-3 lg:gap-32">
         {robot.features.map((feature, i) => (
           <li key={feature.title}>
             <Reveal
@@ -128,18 +128,21 @@ function Specs({ robot }: { robot: Robot }) {
           {robot.specs.map(([label, value], i) => (
             <Reveal
               key={label}
-              className="flex min-h-56 items-center justify-between gap-24 border-b border-line lg:min-h-[var(--spec-row-h)]"
+              className="grid min-h-56 grid-cols-[minmax(0,2fr)_minmax(0,3fr)] items-center gap-16 border-b border-line py-12 lg:mb-[var(--spec-gap)] lg:flex lg:min-h-[var(--spec-row-h)] lg:justify-between lg:gap-24 lg:py-0"
               style={
                 {
                   "--spec-row-h": `${robot.specRowH / 16}rem`,
-                  marginBottom: i === 0 && robot.specGapAfterFirst ? `${robot.specGapAfterFirst / 16}rem` : undefined,
+                  // Phantas has an empty band after its first row on desktop only.
+                  "--spec-gap": i === 0 && robot.specGapAfterFirst ? `${robot.specGapAfterFirst / 16}rem` : "0",
                 } as React.CSSProperties
               }
             >
-              <dt className={robot.slug === "phantas" ? "t-h6 !font-normal" : "t-body text-ink"}>{label}</dt>
+              <dt className={robot.slug === "phantas" ? "t-h6 !font-normal max-lg:!text-[1rem]" : "t-body text-ink"}>
+                {label}
+              </dt>
               <dd
-                className={`t-body text-muted ${
-                  robot.specsValueAlign === "right" ? "text-right" : "w-1/2 text-left"
+                className={`t-body text-right text-muted ${
+                  robot.specsValueAlign === "right" ? "" : "lg:w-1/2 lg:text-left"
                 }`}
               >
                 {value}
@@ -195,11 +198,10 @@ export default async function RobotPage({ params }: PageProps<"/[slug]">) {
     <>
       {/* Hero */}
       <section
-        className="bg-navy px-24 pb-60 pt-[var(--hero-top-m)] lg:px-0 lg:pb-[var(--hero-bottom)] lg:pt-[var(--hero-top)]"
+        className="bg-navy px-24 pb-60 pt-32 lg:px-0 lg:pb-[var(--hero-bottom)] lg:pt-[var(--hero-top)]"
         style={
           {
             "--hero-top": `${robot.heroBox.top / 16}rem`,
-            "--hero-top-m": `${robot.heroMobile.top / 16}rem`,
             "--hero-bottom": `${robot.heroBox.bottom / 16}rem`,
             "--hero-left": `${robot.heroBox.left / 16}rem`,
             "--hero-text-w": `${robot.heroBox.textW / 16}rem`,
@@ -222,14 +224,14 @@ export default async function RobotPage({ params }: PageProps<"/[slug]">) {
             <Reveal>
               <p className={`${robot.introClass} mt-16 text-ink lg:mt-32 lg:w-[var(--hero-intro-w)]`}>{robot.intro}</p>
             </Reveal>
-            <Reveal className="mt-32 flex flex-col items-start gap-16 lg:mt-48 lg:gap-28">
-              <div className="flex flex-wrap gap-16 lg:gap-20">
+            <Reveal className="mt-32 flex flex-col items-stretch gap-12 lg:mt-48 lg:items-start lg:gap-28">
+              <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:flex lg:flex-wrap lg:gap-20">
                 {robot.showQuoteButton && (
-                  <Link href="/contact" className="btn h-53 px-32">
+                  <Link href="/contact" className="btn h-50 px-32 lg:h-53">
                     Request a Quote
                   </Link>
                 )}
-                <Link href="/contact" className="btn h-53 px-32">
+                <Link href="/contact" className="btn h-50 px-32 lg:h-53">
                   Book a Demo
                 </Link>
               </div>
@@ -237,7 +239,7 @@ export default async function RobotPage({ params }: PageProps<"/[slug]">) {
                 href={robot.brochure}
                 target="_blank"
                 rel="noreferrer"
-                className="btn btn-solid h-45 w-290 max-w-full"
+                className="btn btn-solid h-50 w-full lg:h-45 lg:w-290"
               >
                 Download Brochure
               </a>

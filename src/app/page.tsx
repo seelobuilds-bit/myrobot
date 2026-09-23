@@ -105,7 +105,7 @@ export default function HomePage() {
           </h2>
         </Reveal>
 
-        <ul className="mt-40 grid grid-cols-1 gap-24 lg:mt-102 lg:grid-cols-[minmax(0,220fr)_minmax(0,198fr)_minmax(0,198fr)_minmax(0,198fr)_minmax(0,221fr)] lg:gap-x-32 lg:gap-y-73">
+        <ul className="mt-40 grid grid-cols-1 gap-24 md:grid-cols-2 lg:mt-102 lg:grid-cols-[minmax(0,220fr)_minmax(0,198fr)_minmax(0,198fr)_minmax(0,198fr)_minmax(0,221fr)] lg:gap-x-32 lg:gap-y-73">
           {INDUSTRIES.map((name, i) => (
             <li key={name}>
               <Reveal
@@ -122,9 +122,9 @@ export default function HomePage() {
 
       {/* Stats */}
       <section className="bg-panel px-24 py-80 lg:px-80 lg:py-80">
-        <ul className="grid grid-cols-1 gap-24 lg:grid-cols-4 lg:gap-24">
+        <ul className="grid grid-cols-1 gap-24 md:grid-cols-2 lg:grid-cols-4 lg:gap-24">
           {STATS.map((stat, i) => (
-            <li key={stat.label} className={i === 0 ? "max-lg:mb-16" : undefined}>
+            <li key={stat.label} className={i === 0 ? "max-md:mb-16" : undefined}>
               <Reveal
                 variant="fade"
                 delay={i * 100}

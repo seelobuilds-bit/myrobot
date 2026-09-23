@@ -142,7 +142,7 @@ export default function ServicesPage() {
         <Reveal>
           <h2 className="t-h2 mx-auto text-center lg:w-768">Everything You Need. Nothing You Don&apos;t.</h2>
         </Reveal>
-        <ul className="mt-40 grid grid-cols-1 gap-24 lg:mt-48 lg:grid-cols-3 lg:gap-24">
+        <ul className="mt-40 grid grid-cols-1 gap-24 md:grid-cols-2 lg:mt-48 lg:grid-cols-3 lg:gap-24">
           {OFFERINGS.map((item, i) => (
             <li key={item.title}>
               <Reveal variant="fade" delay={i * 50} className="h-full border border-line p-24 lg:min-h-208 lg:p-32">
@@ -165,7 +165,7 @@ export default function ServicesPage() {
             visibility and control of your cleaning operation from any smartphone, tablet or PC.
           </p>
         </Reveal>
-        <ul className="mt-40 grid grid-cols-1 gap-24 lg:mt-80 lg:grid-flow-col lg:grid-cols-3 lg:grid-rows-2 lg:gap-32">
+        <ul className="mt-40 grid grid-cols-1 gap-24 md:grid-cols-2 lg:mt-80 lg:grid-flow-col lg:grid-cols-3 lg:grid-rows-2 lg:gap-32">
           {CLOUD.map((item, i) => (
             <li key={item.title}>
               <Reveal

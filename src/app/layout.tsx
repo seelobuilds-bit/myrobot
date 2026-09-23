@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Onest } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import SiteAssistant from "@/components/SiteAssistant";
 import "./globals.css";
 
 const onest = Onest({
@@ -36,6 +37,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
+        <SiteAssistant />
       </body>
     </html>
   );

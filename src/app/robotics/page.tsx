@@ -83,7 +83,7 @@ export default function RoboticsPage() {
             Every robot in the NOLAR range is powered by Gausium&apos;s industry-leading technology platform.
           </p>
         </Reveal>
-        <ul className="mt-40 grid grid-cols-1 gap-24 lg:mt-64 lg:grid-cols-3 lg:gap-32">
+        <ul className="mt-40 grid grid-cols-1 gap-24 md:grid-cols-2 lg:mt-64 lg:grid-cols-3 lg:gap-32">
           {TECH.map((item, i) => (
             <li key={item.title}>
               <Reveal
@@ -100,7 +100,7 @@ export default function RoboticsPage() {
       </section>
 
       {/* Guide */}
-      <section className="bg-navy px-24 py-80 lg:px-60 lg:pb-100 lg:pt-100">
+      <section id="find-your-robot" className="scroll-mt-64 bg-navy px-24 py-80 lg:scroll-mt-0 lg:px-60 lg:pb-100 lg:pt-100">
         <Reveal>
           <h2 className="t-h2 text-center">Find Your Robot</h2>
         </Reveal>
@@ -109,7 +109,10 @@ export default function RoboticsPage() {
             Not sure which robot suits your space? Use this quick guide.
           </p>
         </Reveal>
-        <Reveal className="mt-40 overflow-x-auto lg:mt-64">
+        <p className="t-small mt-24 text-center text-muted lg:hidden" aria-hidden="true">
+          Swipe the table to compare →
+        </p>
+        <Reveal className="mt-16 overflow-x-auto lg:mt-64">
           <table className="w-full min-w-700 border-collapse text-left">
             <thead>
               <tr>
@@ -117,7 +120,7 @@ export default function RoboticsPage() {
                   <th
                     key={head}
                     scope="col"
-                    className="t-h6 w-1/6 rounded-[0.125rem] border border-line bg-panel px-20 py-20 align-middle"
+                    className="t-h6 w-1/6 rounded-[0.125rem] border border-line bg-panel px-20 py-20 align-middle first:sticky first:left-0 first:z-10 lg:first:static"
                   >
                     {head}
                   </th>
@@ -129,7 +132,7 @@ export default function RoboticsPage() {
                 <tr key={robot}>
                   <th
                     scope="row"
-                    className="t-body rounded-[0.125rem] border border-line bg-panel px-20 py-28 text-left align-middle font-normal text-ink"
+                    className="t-body sticky left-0 z-10 rounded-[0.125rem] border border-line bg-panel px-20 py-28 text-left align-middle font-normal text-ink lg:static"
                   >
                     {robot}
                   </th>
@@ -150,7 +153,7 @@ export default function RoboticsPage() {
 
       {/* Range */}
       <section className="bg-panel px-24 py-80 lg:px-40 lg:pb-135 lg:pt-100">
-        <ul className="grid grid-cols-1 gap-24 lg:grid-cols-4 lg:gap-x-40 lg:gap-y-40">
+        <ul className="grid grid-cols-1 gap-24 md:grid-cols-2 lg:grid-cols-4 lg:gap-x-40 lg:gap-y-40">
           {RANGE.map((robot, i) => (
             <li key={robot.href}>
               <Reveal

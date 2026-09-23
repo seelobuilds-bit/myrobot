@@ -20,6 +20,14 @@ export const NAV: NavItem[] = [
       { label: "Beetle", href: "/beetle" },
     ],
   },
+  {
+    label: "Aventurier",
+    href: "/aventurier",
+    children: [
+      { label: "Artist 1", href: "/artist-1" },
+      { label: "Ranger One", href: "/ranger-one" },
+    ],
+  },
   { label: "About Us", href: "/abouts" },
   { label: "Contact", href: "/contact" },
   { label: "MyRobot", href: "/account-settings" },
@@ -29,6 +37,7 @@ export const CONTACT = {
   email: "info@myrobot.ie",
   emailHref: "mailto:info@myrobot.ie?subject=Cleaning robot inquiry",
   phone: "+353 85 194 2831",
+  phoneHref: "tel:+353851942831",
   whatsappHref: "https://api.whatsapp.com/send?phone=353851942831",
   website: "www.myrobot.ie",
   websiteHref: "https://www.myrobot.ie",
