@@ -54,7 +54,7 @@ export default function ConceptHome() {
   return (
     <>
       {/* ---------------- Hero ---------------- */}
-      <section className="hero relative overflow-hidden bg-mist lg:min-h-[max(100svh,56.8vw)]">
+      <section className="hero relative overflow-hidden bg-mist">
         {/* Dark theme: LiDAR footage replaces the white studio render, which
             only blends into the light page. */}
         {THEME === "dark" && (
@@ -79,11 +79,42 @@ export default function ConceptHome() {
           </div>
         )}
 
-        {/* Desktop: the studio render spans the full width and sits on the floor of
-            the hero. Its backdrop is the same grey as the section, so any extra
-            height above it is seamless. */}
+        <div className="hero-copy wrap relative z-10 pb-10 pt-28 sm:pt-32 lg:pb-0 lg:pt-[max(6rem,13svh)]">
+          <R>
+            <Eyebrow>Autonomous cleaning · Limerick to all of Ireland</Eyebrow>
+          </R>
+          <Lines
+            as="h1"
+            lines={["The future of clean", "is already here."]}
+            className="t-display mt-6 !text-[clamp(3rem,min(6.6vw,10.5svh),7.75rem)] lg:mt-7"
+            delay={120}
+            step={120}
+          />
+          <div className="mt-8 lg:mt-9">
+            <R delay={450} className="max-w-[33rem] lg:max-w-[38rem]">
+              <p className="t-lead text-ink-soft">
+                NOLAR deploys intelligent autonomous cleaning robots across Ireland. Purpose-built machines that work
+                while your team focuses on what matters.
+              </p>
+            </R>
+            <R delay={600} className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap lg:mt-9">
+              <Link href={to("/contact")} className="btn btn-ink w-full sm:w-auto">
+                Book a free demo
+                <Arrow />
+              </Link>
+              <Link href={`${to("/robots")}#finder`} className="hero-ghost btn btn-line w-full sm:w-auto">
+                Find your robot
+              </Link>
+            </R>
+          </div>
+        </div>
+
+        {/* Desktop: the studio render follows the copy and is pulled up under it.
+            The top half of the render is empty studio wall (the same grey as the
+            section), so the text sits on the wall and the robots always start
+            below the buttons, whatever the window size. */}
         {THEME === "light" && (
-          <div className="hero-drift absolute inset-x-0 bottom-[-6%] hidden aspect-[4400/2497] lg:block">
+          <div className="hero-drift relative -mb-[3.4vw] -mt-[29.5vw] hidden aspect-[4400/2497] lg:block">
             <Image
               src="/images/contact-hero.jpg"
               alt="The Gausium robot range in a white studio"
@@ -127,36 +158,6 @@ export default function ConceptHome() {
             ))}
           </div>
         )}
-
-        <div className="hero-copy wrap relative pb-10 pt-28 sm:pt-32 lg:pb-0 lg:pt-[7.5rem]">
-          <R>
-            <Eyebrow>Autonomous cleaning · Limerick to all of Ireland</Eyebrow>
-          </R>
-          <Lines
-            as="h1"
-            lines={["The future of clean", "is already here."]}
-            className="t-display mt-6 !text-[clamp(3rem,6.6vw,7.75rem)] lg:mt-7"
-            delay={120}
-            step={120}
-          />
-          <div className="hero-row mt-8 lg:mt-9 lg:flex lg:items-end lg:justify-between lg:gap-12">
-            <R delay={450} className="max-w-[33rem]">
-              <p className="t-lead text-ink-soft">
-                NOLAR deploys intelligent autonomous cleaning robots across Ireland. Purpose-built machines that work
-                while your team focuses on what matters.
-              </p>
-            </R>
-            <R delay={600} className="hero-ctas mt-8 flex shrink-0 flex-col gap-3 sm:flex-row sm:flex-wrap lg:mt-0">
-              <Link href={to("/contact")} className="btn btn-ink w-full sm:w-auto">
-                Book a free demo
-                <Arrow />
-              </Link>
-              <Link href={`${to("/robots")}#finder`} className="hero-ghost btn btn-line w-full sm:w-auto">
-                Find your robot
-              </Link>
-            </R>
-          </div>
-        </div>
 
         {/* Phone/tablet: a tight crop of the fleet under the copy */}
         {THEME === "light" && (

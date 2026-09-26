@@ -672,9 +672,8 @@ input[type="range"].range:active::-webkit-slider-thumb {
   filter: invert(0.92) hue-rotate(180deg) saturate(0.6) brightness(0.95);
 }
 
-/* Home hero, dark theme. The LiDAR footage fills the frame, so the copy sits
-   bottom-left like a title card with the buttons directly under it, instead of
-   the light layout's buttons floating on the right over the studio wall. */
+/* Home hero, dark theme. The LiDAR footage fills the frame, so the copy and
+   buttons sit together bottom-left like a title card. */
 :root[data-theme="dark"] .hero {
   display: flex;
   flex-direction: column;
@@ -703,11 +702,5 @@ input[type="range"].range:active::-webkit-slider-thumb {
   }
   :root[data-theme="dark"] .hero-copy {
     padding-bottom: 8.5rem;
-  }
-  :root[data-theme="dark"] .hero-row {
-    display: block;
-  }
-  :root[data-theme="dark"] .hero-ctas {
-    margin-top: 2.25rem;
   }
 }

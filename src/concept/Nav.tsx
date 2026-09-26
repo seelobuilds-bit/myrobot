@@ -167,9 +167,9 @@ export default function Nav() {
                     <circle cx="9" cy="9" r="5.5" stroke="currentColor" strokeWidth="1.6" />
                     <path d="M13.2 13.2 17 17" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
                   </svg>
-                  <span className="hidden lg:inline">Ask anything</span>
+                  <span className="hidden xl:inline">Ask anything</span>
                   <kbd
-                    className={`t-mono hidden rounded-md border px-1.5 py-0.5 !text-[0.65rem] !tracking-normal lg:inline ${
+                    className={`t-mono hidden rounded-md border px-1.5 py-0.5 !text-[0.65rem] !tracking-normal xl:inline ${
                       onDark ? "border-white/15 text-white/60" : "border-ink/10 text-steel"
                     }`}
                   >
