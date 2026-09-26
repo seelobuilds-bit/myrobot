@@ -6,6 +6,12 @@
       "runtimeExecutable": "npm",
       "runtimeArgs": ["run", "dev", "--", "--port", "3210"],
       "port": 3210
+    },
+    {
+      "name": "myrobot-dev-dark",
+      "runtimeExecutable": "env",
+      "runtimeArgs": ["CONCEPT_THEME=dark", "npm", "run", "dev", "--", "--port", "3211"],
+      "port": 3211
     }
   ]
 }

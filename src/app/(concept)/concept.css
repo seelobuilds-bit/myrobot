@@ -79,12 +79,6 @@
   color-scheme: dark;
 }
 
-/* Swap blocks that only make sense in one theme (e.g. the home hero art). */
-:root[data-theme="dark"] .light-only,
-:root:not([data-theme="dark"]) .dark-only {
-  display: none !important;
-}
-
 html {
   background: var(--color-paper);
   -webkit-text-size-adjust: 100%;
@@ -106,18 +100,6 @@ body {
 ::selection {
   background: var(--color-signal);
   color: #fff;
-}
-
-/* Theme switch cross-fade (skipped for reduced motion) */
-html.theme-fade,
-html.theme-fade *,
-html.theme-fade *::before,
-html.theme-fade *::after {
-  transition:
-    background-color 0.45s ease,
-    border-color 0.45s ease,
-    color 0.45s ease,
-    fill 0.45s ease !important;
 }
 
 :focus-visible {

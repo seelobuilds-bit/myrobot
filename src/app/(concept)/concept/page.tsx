@@ -10,6 +10,7 @@ import LoopVideo from "@/concept/LoopVideo";
 import NightShift from "@/concept/NightShift";
 import { AVENTURIER, HEADLINE_STATS, INDUSTRIES, machineHref, robotHref, to } from "@/concept/data";
 import { Arrow, Eyebrow, Lines, R, SectionHead } from "@/concept/ui";
+import { THEME } from "@/concept/theme";
 import { CONTACT } from "@/data/site";
 
 export const metadata: Metadata = {
@@ -56,72 +57,76 @@ export default function ConceptHome() {
       <section className="hero relative overflow-hidden bg-mist lg:min-h-[max(100svh,56.8vw)]">
         {/* Dark theme: LiDAR footage replaces the white studio render, which
             only blends into the light page. */}
-        <div className="dark-only absolute inset-0">
-          <LoopVideo
-            src="/concept/hero-dark.mp4"
-            poster="/concept/hero-dark-poster.jpg"
-            className="absolute inset-0 h-full w-full object-cover object-[65%_50%]"
-          />
-          <div
-            aria-hidden="true"
-            className="absolute inset-0 bg-gradient-to-b from-paper/70 via-transparent to-transparent lg:bg-gradient-to-r lg:from-paper/85 lg:via-paper/30 lg:to-transparent"
-          />
-          <div
-            aria-hidden="true"
-            className="absolute inset-x-0 bottom-0 h-[90%] bg-gradient-to-t from-paper from-40% via-paper/80 to-transparent lg:h-[62%] lg:from-0%"
-          />
-          <p className="t-mono absolute bottom-[5.25rem] right-[var(--gutter)] hidden items-center gap-2.5 text-ink-soft lg:flex">
-            <span aria-hidden="true" className="blink h-1.5 w-1.5 rounded-full bg-lidar" />
-            Omnie &amp; Beetle · 3D LiDAR navigation
-          </p>
-        </div>
+        {THEME === "dark" && (
+          <div className="absolute inset-0">
+            <LoopVideo
+              src="/concept/hero-dark.mp4"
+              poster="/concept/hero-dark-poster.jpg"
+              className="absolute inset-0 h-full w-full object-cover object-[65%_50%]"
+            />
+            <div
+              aria-hidden="true"
+              className="absolute inset-0 bg-gradient-to-b from-paper/70 via-transparent to-transparent lg:bg-gradient-to-r lg:from-paper/85 lg:via-paper/30 lg:to-transparent"
+            />
+            <div
+              aria-hidden="true"
+              className="absolute inset-x-0 bottom-0 h-[90%] bg-gradient-to-t from-paper from-40% via-paper/80 to-transparent lg:h-[62%] lg:from-0%"
+            />
+            <p className="t-mono absolute bottom-[5.25rem] right-[var(--gutter)] hidden items-center gap-2.5 text-ink-soft lg:flex">
+              <span aria-hidden="true" className="blink h-1.5 w-1.5 rounded-full bg-lidar" />
+              Omnie &amp; Beetle · 3D LiDAR navigation
+            </p>
+          </div>
+        )}
 
         {/* Desktop: the studio render spans the full width and sits on the floor of
             the hero. Its backdrop is the same grey as the section, so any extra
             height above it is seamless. */}
-        <div className="light-only hero-drift absolute inset-x-0 bottom-[-6%] hidden aspect-[4400/2497] lg:block">
-          <Image
-            src="/images/contact-hero.jpg"
-            alt="The Gausium robot range in a white studio"
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover"
-          />
-          {/* LiDAR sweep across the fleet */}
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-x-0 bottom-[10%] top-[56%] overflow-hidden"
-          >
-            <div className="scanline absolute inset-y-0 left-0 w-[16vw]">
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-signal/[0.04] to-signal/[0.16]" />
-              <div className="absolute inset-y-0 right-0 w-px bg-signal shadow-[0_0_18px_4px_rgb(35_64_255/0.5)]" />
-            </div>
-          </div>
-          {HOTSPOTS.map((h, i) => (
-            <Link
-              key={h.slug}
-              href={robotHref(h.slug)}
-              className="group absolute -translate-x-1/2 -translate-y-full"
-              style={{ left: `${h.x}%`, top: `${h.y}%` }}
+        {THEME === "light" && (
+          <div className="hero-drift absolute inset-x-0 bottom-[-6%] hidden aspect-[4400/2497] lg:block">
+            <Image
+              src="/images/contact-hero.jpg"
+              alt="The Gausium robot range in a white studio"
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover"
+            />
+            {/* LiDAR sweep across the fleet */}
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-x-0 bottom-[10%] top-[56%] overflow-hidden"
             >
-              <span className="pop-in flex flex-col items-center" style={{ animationDelay: `${1400 + i * 200}ms` }}>
-                <span className="flex items-center gap-2 rounded-full bg-white/90 py-1 pl-1 pr-3 shadow-[0_8px_24px_-10px_rgb(10_13_20/0.35)] backdrop-blur transition-colors group-hover:bg-ink group-hover:text-white">
-                  <span className="t-mono flex h-6 w-6 items-center justify-center rounded-full bg-signal !text-[0.6rem] !tracking-normal text-white">
-                    {h.no}
+              <div className="scanline absolute inset-y-0 left-0 w-[16vw]">
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-signal/[0.04] to-signal/[0.16]" />
+                <div className="absolute inset-y-0 right-0 w-px bg-signal shadow-[0_0_18px_4px_rgb(35_64_255/0.5)]" />
+              </div>
+            </div>
+            {HOTSPOTS.map((h, i) => (
+              <Link
+                key={h.slug}
+                href={robotHref(h.slug)}
+                className="group absolute -translate-x-1/2 -translate-y-full"
+                style={{ left: `${h.x}%`, top: `${h.y}%` }}
+              >
+                <span className="pop-in flex flex-col items-center" style={{ animationDelay: `${1400 + i * 200}ms` }}>
+                  <span className="flex items-center gap-2 rounded-full bg-white/90 py-1 pl-1 pr-3 shadow-[0_8px_24px_-10px_rgb(10_13_20/0.35)] backdrop-blur transition-colors group-hover:bg-ink group-hover:text-white">
+                    <span className="t-mono flex h-6 w-6 items-center justify-center rounded-full bg-signal !text-[0.6rem] !tracking-normal text-white">
+                      {h.no}
+                    </span>
+                    <span className="text-sm font-[600]">{h.name}</span>
+                    <Arrow className="h-3.5 w-3.5" />
                   </span>
-                  <span className="text-sm font-[600]">{h.name}</span>
-                  <Arrow className="h-3.5 w-3.5" />
+                  <span className="h-8 w-px bg-ink/40" />
+                  <span className="relative h-2 w-2">
+                    <span className="ping absolute inset-0 rounded-full bg-signal" />
+                    <span className="absolute inset-0 rounded-full bg-signal" />
+                  </span>
                 </span>
-                <span className="h-8 w-px bg-ink/40" />
-                <span className="relative h-2 w-2">
-                  <span className="ping absolute inset-0 rounded-full bg-signal" />
-                  <span className="absolute inset-0 rounded-full bg-signal" />
-                </span>
-              </span>
-            </Link>
-          ))}
-        </div>
+              </Link>
+            ))}
+          </div>
+        )}
 
         <div className="hero-copy wrap relative pb-10 pt-28 sm:pt-32 lg:pb-0 lg:pt-[7.5rem]">
           <R>
@@ -154,25 +159,27 @@ export default function ConceptHome() {
         </div>
 
         {/* Phone/tablet: a tight crop of the fleet under the copy */}
-        <div className="light-only relative aspect-[16/11] overflow-hidden sm:aspect-[16/9] lg:hidden">
-          <Image
-            src="/images/contact-hero.jpg"
-            alt="The Gausium robot range in a white studio"
-            fill
-            priority
-            sizes="180vw"
-            className="origin-[74%_84%] scale-[1.9] object-cover sm:scale-[1.5]"
-          />
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-x-0 bottom-[6%] top-[28%] overflow-hidden"
-          >
-            <div className="scanline absolute inset-y-0 left-0 w-[30vw]">
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent to-signal/20" />
-              <div className="absolute inset-y-0 right-0 w-px bg-signal shadow-[0_0_14px_3px_rgb(35_64_255/0.55)]" />
+        {THEME === "light" && (
+          <div className="relative aspect-[16/11] overflow-hidden sm:aspect-[16/9] lg:hidden">
+            <Image
+              src="/images/contact-hero.jpg"
+              alt="The Gausium robot range in a white studio"
+              fill
+              priority
+              sizes="180vw"
+              className="origin-[74%_84%] scale-[1.9] object-cover sm:scale-[1.5]"
+            />
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-x-0 bottom-[6%] top-[28%] overflow-hidden"
+            >
+              <div className="scanline absolute inset-y-0 left-0 w-[30vw]">
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent to-signal/20" />
+                <div className="absolute inset-y-0 right-0 w-px bg-signal shadow-[0_0_14px_3px_rgb(35_64_255/0.55)]" />
+              </div>
             </div>
           </div>
-        </div>
+        )}
 
         {/* Industries ticker */}
         <div className="marquee-wrap relative border-t border-ink/10 bg-mist/70 py-4 backdrop-blur lg:absolute lg:inset-x-0 lg:bottom-0">

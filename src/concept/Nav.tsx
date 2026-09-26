@@ -5,7 +5,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import AskPalette from "./AskPalette";
-import ThemeToggle, { useSystemThemeSync } from "./ThemeToggle";
 import { AVENTURIER, FLEET, NAV, machineHref, robotHref, to } from "./data";
 import { Arrow, Wordmark } from "./ui";
 
@@ -19,7 +18,6 @@ export default function Nav() {
   const [ask, setAsk] = useState(false);
   const [lastPath, setLastPath] = useState(pathname);
   const megaTimer = useRef<number | undefined>(undefined);
-  useSystemThemeSync();
 
   // Close overlays on navigation.
   if (pathname !== lastPath) {
@@ -157,11 +155,6 @@ export default function Nav() {
               </nav>
 
               <div className="ml-auto flex items-center gap-1.5 lg:gap-2">
-                <ThemeToggle
-                  className={`flex h-10 w-10 items-center justify-center rounded-full transition-colors lg:h-11 lg:w-11 ${
-                    onDark ? "hover:bg-white/10" : "hover:bg-ink/[0.05]"
-                  }`}
-                />
                 <button
                   type="button"
                   onClick={() => setAsk(true)}
@@ -340,7 +333,6 @@ export default function Nav() {
             ))}
           </ul>
           <div className="mt-auto grid gap-2 pt-8">
-            <ThemeToggle withLabel className="btn btn-line w-full" />
             <Link href={to("/contact")} className="btn btn-ink w-full">
               Book a free demo
             </Link>

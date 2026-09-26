@@ -1,12 +1,11 @@
-// Shared by the root layout (server) and the theme toggle (client).
-
 export type Theme = "light" | "dark";
 
-export const THEME_KEY = "nolar-theme";
-
 /**
- * Runs in <head> before first paint so the page never flashes the wrong theme.
- * Order: ?theme=dark|light in the URL (handy for sharing), then the visitor's
- * saved choice, then their system setting.
+ * The concept is built in one theme per deployment, so light and dark each
+ * get their own preview URL: the `concept-dark` branch builds dark, every
+ * other branch builds light. Set CONCEPT_THEME=dark to preview dark locally.
  */
-export const THEME_SCRIPT = `(function(){try{var d=document.documentElement,k=${JSON.stringify(THEME_KEY)},s=null;try{s=localStorage.getItem(k)}catch(e){}var q=new URLSearchParams(location.search).get("theme");if(q==="dark"||q==="light"){s=q;try{localStorage.setItem(k,q)}catch(e){}}d.dataset.theme=s==="dark"||s==="light"?s:matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}catch(e){}})();`;
+export const THEME: Theme =
+  (process.env.CONCEPT_THEME ?? (process.env.VERCEL_GIT_COMMIT_REF === "concept-dark" ? "dark" : "light")) === "dark"
+    ? "dark"
+    : "light";
