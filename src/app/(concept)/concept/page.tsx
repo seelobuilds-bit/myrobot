@@ -53,7 +53,7 @@ export default function ConceptHome() {
   return (
     <>
       {/* ---------------- Hero ---------------- */}
-      <section className="relative overflow-hidden bg-mist lg:min-h-[max(100svh,56.8vw)] max-lg:dark:flex max-lg:dark:min-h-[100svh] max-lg:dark:flex-col">
+      <section className="hero relative overflow-hidden bg-mist lg:min-h-[max(100svh,56.8vw)]">
         {/* Dark theme: LiDAR footage replaces the white studio render, which
             only blends into the light page. */}
         <div className="dark-only absolute inset-0">
@@ -64,12 +64,16 @@ export default function ConceptHome() {
           />
           <div
             aria-hidden="true"
-            className="absolute inset-0 bg-gradient-to-b from-paper/90 via-paper/55 to-paper/85 lg:bg-gradient-to-r lg:from-paper/95 lg:via-paper/55 lg:to-paper/5"
+            className="absolute inset-0 bg-gradient-to-b from-paper/70 via-transparent to-transparent lg:bg-gradient-to-r lg:from-paper/85 lg:via-paper/30 lg:to-transparent"
           />
           <div
             aria-hidden="true"
-            className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-paper to-transparent"
+            className="absolute inset-x-0 bottom-0 h-[90%] bg-gradient-to-t from-paper from-40% via-paper/80 to-transparent lg:h-[62%] lg:from-0%"
           />
+          <p className="t-mono absolute bottom-[5.25rem] right-[var(--gutter)] hidden items-center gap-2.5 text-ink-soft lg:flex">
+            <span aria-hidden="true" className="blink h-1.5 w-1.5 rounded-full bg-lidar" />
+            Omnie &amp; Beetle · 3D LiDAR navigation
+          </p>
         </div>
 
         {/* Desktop: the studio render spans the full width and sits on the floor of
@@ -119,7 +123,7 @@ export default function ConceptHome() {
           ))}
         </div>
 
-        <div className="wrap relative pb-10 pt-28 sm:pt-32 lg:pb-0 lg:pt-[7.5rem]">
+        <div className="hero-copy wrap relative pb-10 pt-28 sm:pt-32 lg:pb-0 lg:pt-[7.5rem]">
           <R>
             <Eyebrow>Autonomous cleaning · Limerick to all of Ireland</Eyebrow>
           </R>
@@ -130,19 +134,19 @@ export default function ConceptHome() {
             delay={120}
             step={120}
           />
-          <div className="mt-8 lg:mt-9 lg:flex lg:items-end lg:justify-between lg:gap-12">
+          <div className="hero-row mt-8 lg:mt-9 lg:flex lg:items-end lg:justify-between lg:gap-12">
             <R delay={450} className="max-w-[33rem]">
               <p className="t-lead text-ink-soft">
                 NOLAR deploys intelligent autonomous cleaning robots across Ireland. Purpose-built machines that work
                 while your team focuses on what matters.
               </p>
             </R>
-            <R delay={600} className="mt-8 flex shrink-0 flex-wrap gap-3 lg:mt-0">
-              <Link href={to("/contact")} className="btn btn-ink">
+            <R delay={600} className="hero-ctas mt-8 flex shrink-0 flex-col gap-3 sm:flex-row sm:flex-wrap lg:mt-0">
+              <Link href={to("/contact")} className="btn btn-ink w-full sm:w-auto">
                 Book a free demo
                 <Arrow />
               </Link>
-              <Link href={`${to("/robots")}#finder`} className="btn btn-line">
+              <Link href={`${to("/robots")}#finder`} className="hero-ghost btn btn-line w-full sm:w-auto">
                 Find your robot
               </Link>
             </R>
@@ -171,7 +175,7 @@ export default function ConceptHome() {
         </div>
 
         {/* Industries ticker */}
-        <div className="marquee-wrap relative mt-auto border-t border-ink/10 bg-mist/70 py-4 backdrop-blur lg:absolute lg:inset-x-0 lg:bottom-0">
+        <div className="marquee-wrap relative border-t border-ink/10 bg-mist/70 py-4 backdrop-blur lg:absolute lg:inset-x-0 lg:bottom-0">
           <div className="marquee" style={{ "--speed": "55s" } as React.CSSProperties}>
             {[0, 1].map((copy) => (
               <ul key={copy} className="flex shrink-0 items-center" aria-hidden={copy === 1}>
