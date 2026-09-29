@@ -36,6 +36,7 @@
   --color-lidar: #8af0ff;
   --color-av: #b3203a;
   --color-av-ink: #b3203a;
+  --color-logo: #22314d; /* brand navy from the NOLAR logo artwork */
 
   --font-sans: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-jetbrains), ui-monospace, "SFMono-Regular", monospace;
@@ -70,6 +71,7 @@
   --color-signal-ink: #8fa2ff;
   --color-signal-soft: #18204a;
   --color-av-ink: #ff6b82;
+  --color-logo: #ffffff;
   --color-night: #030409;
   --color-night-2: #0a0e17;
   --grid-line: rgb(255 255 255 / 0.045);
@@ -279,6 +281,13 @@ button:hover .arrow,
   background-color: currentColor;
   -webkit-mask: url("/images/aventurier/aventurier-logo.png") center / contain no-repeat;
   mask: url("/images/aventurier/aventurier-logo.png") center / contain no-repeat;
+}
+
+/* The blue halo around the NOLAR mark in the brand artwork (navy letters on
+   light, white on dark). Sized for the header logo. */
+.logo-glow {
+  filter: drop-shadow(0 0 1px rgb(150 196 250 / 0.85)) drop-shadow(0 0 4px rgb(150 196 250 / 0.8))
+    drop-shadow(0 0 11px rgb(150 196 250 / 0.55));
 }
 
 /* Soft studio backdrop behind cut-out product shots */

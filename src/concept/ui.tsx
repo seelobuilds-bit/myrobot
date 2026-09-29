@@ -21,10 +21,13 @@ export function Arrow({
   );
 }
 
-/** The NOLAR wordmark in whatever colour the parent text is. */
-export function Wordmark({ className = "" }: { className?: string }) {
+/**
+ * The NOLAR wordmark in whatever colour the parent text is. `glow` adds the
+ * soft blue halo from the brand artwork.
+ */
+export function Wordmark({ className = "", glow = false }: { className?: string; glow?: boolean }) {
   return (
-    <span className={`block [&_path]:fill-current ${className}`}>
+    <span className={`block [&_path]:fill-current ${glow ? "logo-glow" : ""} ${className}`}>
       <Logo className="h-full w-full" />
     </span>
   );

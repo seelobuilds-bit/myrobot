@@ -116,8 +116,14 @@ export default function Nav() {
             }`}
           >
             <div className="flex h-14 items-center gap-4 pl-4 pr-2 lg:h-16 lg:pl-5">
-              <Link href={to("/")} aria-label="NOLAR home" className="h-7 w-[6.2rem] shrink-0 lg:h-8 lg:w-[7rem]">
-                <Wordmark className="h-full w-full" />
+              <Link
+                href={to("/")}
+                aria-label="NOLAR home"
+                className={`h-7 w-[6.2rem] shrink-0 transition-colors duration-500 lg:h-8 lg:w-[7rem] ${
+                  onDark ? "text-white" : "text-logo"
+                }`}
+              >
+                <Wordmark glow className="h-full w-full" />
               </Link>
 
               <nav aria-label="Main" className="ml-6 hidden flex-1 lg:block">
