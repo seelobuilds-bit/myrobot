@@ -4,9 +4,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
+import AnimatedWordmark from "./AnimatedWordmark";
 import AskPalette from "./AskPalette";
 import { AVENTURIER, FLEET, NAV, machineHref, robotHref, to } from "./data";
-import { Arrow, Wordmark } from "./ui";
+import { Arrow } from "./ui";
 
 export default function Nav() {
   const pathname = usePathname();
@@ -123,7 +124,7 @@ export default function Nav() {
                   onDark ? "text-white" : "text-logo"
                 }`}
               >
-                <Wordmark glow className="h-full w-full" />
+                <AnimatedWordmark className="h-full w-full" />
               </Link>
 
               <nav aria-label="Main" className="ml-6 hidden flex-1 lg:block">
